@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Super Admin — SLPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<script src="admin.js"></script>
+<script>
+  (function(){
+    const s = getSession();
+    if (!s || s.role !== 'super') window.location.href = 'super-login.html';
+  })();
+</script>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon logo-icon--gold">SA</div>
+      <div class="sidebar-logo-text"><h3>Super Admin</h3><p>SLPI Workshop Hub</p></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <button class="sidebar-link sidebar-link--gold active" data-section="dashboard">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span class="link-label">Dashboard</span>
+      </button>
+
+      <div class="nav-section-label">Admin 1 Workshops</div>
+      <button class="sidebar-link sidebar-link--gold" data-section="a1-workshops">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <span class="link-label">A1 Workshops</span>
+      </button>
+      <button class="sidebar-link sidebar-link--gold" data-section="a1-enrollments">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span class="link-label">A1 Enrollments</span>
+      </button>
+
+      <div class="nav-section-label">Admin 2 Workshops</div>
+      <button class="sidebar-link sidebar-link--gold" data-section="a2-workshops">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <span class="link-label">A2 Workshops</span>
+      </button>
+      <button class="sidebar-link sidebar-link--gold" data-section="a2-enrollments">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span class="link-label">A2 Enrollments</span>
+      </button>
+
+      <div class="nav-section-label">Export &amp; Logs</div>
+      <button class="sidebar-link sidebar-link--gold" data-section="export">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span class="link-label">Export Data</span>
+      </button>
+      <button class="sidebar-link sidebar-link--gold" data-section="emaillog">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span class="link-label">Email Log</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" style="background:linear-gradient(135deg,var(--amber),#f97316)">SA</div>
+        <div class="sidebar-user-info"><p>Super Admin</p><p>super@slpi.lk</p></div>
+      </div>
+      <button class="btn-logout" id="logoutBtn">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <button id="sidebarToggle" style="background:none;border:none;cursor:pointer;color:var(--text-w);display:none;" class="sidebar-toggle-btn">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge badge-gold">Super Admin</span>
+        <a href="index.html" class="btn-sm btn-sm--amber" style="text-decoration:none;">← Public Site</a>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- DASHBOARD -->
+      <section class="page-section active" id="sec-dashboard">
+        <div class="stats-row" id="dashStats"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;" id="adminSummaryGrid">
+          <!-- Admin 1 summary -->
+          <div class="table-wrap" style="padding:1.25rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+              <h3 style="font-size:.95rem;color:var(--text-w);">Admin 1 Workshops <span class="pill pill-em" style="margin-left:.4rem" id="a1WsCount">0</span></h3>
+              <button class="btn-sm btn-sm--em" onclick="jumpTo('a1-workshops')">View All</button>
+            </div>
+            <div id="a1RecentWs"></div>
+          </div>
+          <!-- Admin 2 summary -->
+          <div class="table-wrap" style="padding:1.25rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+              <h3 style="font-size:.95rem;color:var(--text-w);">Admin 2 Workshops <span class="pill pill-blue" style="margin-left:.4rem" id="a2WsCount">0</span></h3>
+              <button class="btn-sm btn-sm--blue" onclick="jumpTo('a2-workshops')">View All</button>
+            </div>
+            <div id="a2RecentWs"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A1 WORKSHOPS -->
+      <section class="page-section" id="sec-a1-workshops">
+        <div class="section-header">
+          <h2>Admin 1 Workshops <span class="owner-badge owner-badge--a1">Admin 1</span></h2>
+          <span style="font-size:.8rem;color:var(--text);">Super Admin can edit &amp; delete these workshops</span>
+        </div>
+        <div class="table-wrap"><table class="data-table" id="a1WsTable"><thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Location</th><th>Trainer</th><th>Enrolled</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- A1 ENROLLMENTS -->
+      <section class="page-section" id="sec-a1-enrollments">
+        <div class="section-header">
+          <h2>Admin 1 Enrollments <span class="owner-badge owner-badge--a1">Admin 1</span></h2>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+            <select id="a1EnrollWsFilter" class="search-sm" style="min-width:190px;"></select>
+            <input type="text" class="search-sm" id="a1EnrollSearch" placeholder="Search…" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="a1EnrollTable">
+            <thead><tr><th><input type="checkbox" id="a1CheckAll" /></th><th>Name</th><th>Email</th><th>Phone</th><th>NIC</th><th>Workplace</th><th>Workshop</th><th>Date</th><th>Selected</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;">
+          <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('admin1'),'A1_All.csv')">Export All CSV</button>
+          <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('admin1').filter(e=>e.selected),'A1_Selected.csv')">Export Selected CSV</button>
+          <button class="btn-export" onclick="exportToGoogleSheets(getOwnerEnrollments('admin1'),'Admin1_Enrollments')">Google Sheets</button>
+        </div>
+      </section>
+
+      <!-- A2 WORKSHOPS -->
+      <section class="page-section" id="sec-a2-workshops">
+        <div class="section-header">
+          <h2>Admin 2 Workshops <span class="owner-badge owner-badge--a2">Admin 2</span></h2>
+          <span style="font-size:.8rem;color:var(--text);">Super Admin can edit &amp; delete these workshops</span>
+        </div>
+        <div class="table-wrap"><table class="data-table" id="a2WsTable"><thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Location</th><th>Trainer</th><th>Enrolled</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- A2 ENROLLMENTS -->
+      <section class="page-section" id="sec-a2-enrollments">
+        <div class="section-header">
+          <h2>Admin 2 Enrollments <span class="owner-badge owner-badge--a2">Admin 2</span></h2>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+            <select id="a2EnrollWsFilter" class="search-sm" style="min-width:190px;"></select>
+            <input type="text" class="search-sm" id="a2EnrollSearch" placeholder="Search…" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="a2EnrollTable">
+            <thead><tr><th><input type="checkbox" id="a2CheckAll" /></th><th>Name</th><th>Email</th><th>Phone</th><th>NIC</th><th>Workplace</th><th>Workshop</th><th>Date</th><th>Selected</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;">
+          <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('admin2'),'A2_All.csv')">Export All CSV</button>
+          <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('admin2').filter(e=>e.selected),'A2_Selected.csv')">Export Selected CSV</button>
+          <button class="btn-export" onclick="exportToGoogleSheets(getOwnerEnrollments('admin2'),'Admin2_Enrollments')">Google Sheets</button>
+        </div>
+      </section>
+
+      <!-- EXPORT -->
+      <section class="page-section" id="sec-export">
+        <h2 style="margin-bottom:1.5rem;">Export Data</h2>
+        <div class="tab-row">
+          <button class="tab-btn active" id="expTab1" onclick="switchExpTab('admin1')">Admin 1</button>
+          <button class="tab-btn" id="expTab2" onclick="switchExpTab('admin2')">Admin 2</button>
+          <button class="tab-btn" id="expTabAll" onclick="switchExpTab('all')">All Combined</button>
+        </div>
+        <div id="exportContent"></div>
+      </section>
+
+      <!-- EMAIL LOG -->
+      <section class="page-section" id="sec-emaillog">
+        <div class="section-header"><h2>All Rejection Emails</h2></div>
+        <div class="table-wrap">
+          <table class="data-table" id="emailLogTable">
+            <thead><tr><th>Sent At</th><th>Recipient</th><th>Email</th><th>Workshop</th><th>Owner</th><th>Preview</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- WORKSHOP EDIT MODAL -->
+<div class="modal-overlay" id="wsModal">
+  <div class="modal-box modal-box--wide">
+    <div class="modal-header"><h3 id="wsModalTitle">Edit Workshop</h3><button class="modal-close" onclick="closeWsModal()">✕</button></div>
+    <div class="modal-body" id="wsModalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-primary" style="background:var(--amber);color:#000;" id="wsModalSave">Save Changes</button>
+      <button class="btn-ghost" onclick="closeWsModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL PREVIEW -->
+<div class="modal-overlay" id="emailModal">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Email Preview</h3><button class="modal-close" onclick="document.getElementById('emailModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" id="emailModalBody" style="white-space:pre-wrap;font-size:.875rem;line-height:1.7;color:var(--text-w);"></div>
+  </div>
+</div>
+
+<script>
+let editingWsId = null;
+let currentExpTab = 'admin1';
+
+function getOwnerWs(owner)          { return getWorkshops().filter(w=>w.owner===owner); }
+function getOwnerEnrollments(owner) { const ids=getOwnerWs(owner).map(w=>w.id); return getEnrollments().filter(e=>ids.includes(e.workshopId)); }
+
+/* ── DASHBOARD ── */
+function renderDashboard() {
+  const allWs=getWorkshops(), allEnr=getEnrollments();
+  const a1Ws=getOwnerWs('admin1'), a2Ws=getOwnerWs('admin2');
+  const a1Enr=getOwnerEnrollments('admin1'), a2Enr=getOwnerEnrollments('admin2');
+  document.getElementById('dashStats').innerHTML=`
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--amber">🗂</div><div><div class="stat-tile-val">${allWs.length}</div><div class="stat-tile-lbl">Total Workshops</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--blue">👥</div><div><div class="stat-tile-val">${allEnr.length}</div><div class="stat-tile-lbl">Total Enrolled</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--em">✅</div><div><div class="stat-tile-val">${allEnr.filter(e=>e.selected).length}</div><div class="stat-tile-lbl">Selected</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--red">📧</div><div><div class="stat-tile-val">${getEmailLog().length}</div><div class="stat-tile-lbl">Rejection Emails</div></div></div>
+  `;
+  document.getElementById('a1WsCount').textContent = a1Ws.length;
+  document.getElementById('a2WsCount').textContent = a2Ws.length;
+  renderMiniWsList('a1RecentWs', a1Ws.slice(-4).reverse(), 'admin1');
+  renderMiniWsList('a2RecentWs', a2Ws.slice(-4).reverse(), 'admin2');
+}
+
+function renderMiniWsList(containerId, ws, owner) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = ws.length ? ws.map(w=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);">
+      <div>
+        <p style="font-size:.8rem;font-weight:600;color:var(--text-w);">${w.title}</p>
+        <p style="font-size:.72rem;color:var(--text);">${fmtDate(w.date)} · ${enrollCount(w.id)} enrolled</p>
+      </div>
+      <button class="btn-sm btn-sm--amber" onclick="openEditWs('${w.id}')">Edit</button>
+    </div>`).join('')
+    : '<p style="font-size:.8rem;color:var(--text);padding:.5rem 0;">No workshops.</p>';
+}
+
+/* ── WORKSHOPS TABLE ── */
+function renderOwnerWsTable(owner, tableId) {
+  const ws=getOwnerWs(owner);
+  const tbody=document.querySelector(`#${tableId} tbody`);
+  tbody.innerHTML=ws.length?ws.map(w=>`<tr>
+    <td style="font-weight:600;color:var(--text-w);max-width:180px">${w.title}</td>
+    <td><span class="pill pill-gray">${w.category}</span></td>
+    <td>${fmtDate(w.date)}</td>
+    <td style="font-size:.8rem">${w.location||'—'}</td>
+    <td style="font-size:.8rem">${w.trainer||'—'}</td>
+    <td><span class="pill ${owner==='admin1'?'pill-em':'pill-blue'}">${enrollCount(w.id)}</span></td>
+    <td>${wsStatusPill(w)}</td>
+    <td style="white-space:nowrap">
+      <button class="btn-sm btn-sm--amber" onclick="openEditWs('${w.id}')">Edit</button>
+      <button class="btn-sm btn-sm--blue"  onclick="jumpToEnrollSection('${owner}','${w.id}')" style="margin-left:.3rem">Enrollees</button>
+      <button class="btn-sm btn-sm--red"   onclick="confirmDeleteWs('${w.id}')" style="margin-left:.3rem">Delete</button>
+    </td></tr>`).join('')
+    :'<tr class="empty-row"><td colspan="8">No workshops.</td></tr>';
+}
+
+/* ── ENROLLMENTS TABLE ── */
+function renderOwnerEnrollTable(owner, tableId, filterSelId, searchId) {
+  const sel=document.getElementById(filterSelId);
+  const prevVal=sel.value;
+  sel.innerHTML='<option value="">All Workshops</option>'+getOwnerWs(owner).map(w=>`<option value="${w.id}" ${prevVal===w.id?'selected':''}>${w.title}</option>`).join('');
+  if(prevVal) sel.value=prevVal;
+
+  let enr=getOwnerEnrollments(owner);
+  const filterWsId=sel.value, searchTerm=document.getElementById(searchId).value;
+  if(filterWsId) enr=enr.filter(e=>e.workshopId===filterWsId);
+  if(searchTerm){const t=searchTerm.toLowerCase();enr=enr.filter(e=>e.name.toLowerCase().includes(t)||e.email.toLowerCase().includes(t));}
+
+  const ws=getWorkshops();
+  const tbody=document.querySelector(`#${tableId} tbody`);
+  tbody.innerHTML=enr.length?enr.map(e=>{const w=ws.find(x=>x.id===e.workshopId);return`<tr>
+    <td><input type="checkbox" class="row-check-${owner}" data-id="${e.id}" ${e.selected?'checked':''} onchange="toggleSelected('${e.id}');renderOwnerEnrollTable('${owner}','${tableId}','${filterSelId}','${searchId}')" /></td>
+    <td style="font-weight:600;color:var(--text-w)">${e.name}</td>
+    <td style="font-size:.8rem">${e.email}</td>
+    <td style="font-size:.8rem">${e.phone}</td>
+    <td style="font-size:.8rem">${e.nic}</td>
+    <td style="font-size:.8rem">${e.workplace||'—'}</td>
+    <td style="font-size:.8rem;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${w?w.title:'—'}</td>
+    <td style="font-size:.8rem">${fmtDate(e.enrolledAt)}</td>
+    <td>${e.selected?'<span class="pill pill-em">✓ Yes</span>':'<span class="pill pill-gray">No</span>'}</td>
+    <td><button class="btn-sm btn-sm--red" onclick="confirmRemoveEnroll('${e.id}','${owner}','${tableId}','${filterSelId}','${searchId}')">Remove</button></td>
+  </tr>`;}).join(''):'<tr class="empty-row"><td colspan="10">No enrollments found.</td></tr>';
+}
+
+/* ── EMAIL LOG ── */
+function renderEmailLog() {
+  const log=getEmailLog(); const ws=getWorkshops();
+  const tbody=document.querySelector('#emailLogTable tbody');
+  tbody.innerHTML=log.length?log.map(m=>{
+    const w=ws.find(x=>x.title===m.workshop);
+    const owner=w?w.owner:'—';
+    const badge=owner==='admin1'?'<span class="owner-badge owner-badge--a1">Admin 1</span>':owner==='admin2'?'<span class="owner-badge owner-badge--a2">Admin 2</span>':'—';
+    return`<tr>
+      <td style="font-size:.8rem">${new Date(m.sentAt).toLocaleString()}</td>
+      <td style="font-weight:600;color:var(--text-w)">${m.name}</td>
+      <td style="font-size:.8rem">${m.to}</td>
+      <td style="font-size:.8rem">${m.workshop}</td>
+      <td>${badge}</td>
+      <td><button class="btn-sm btn-sm--amber" onclick="previewEmail('${m.id}')">Preview</button></td>
+    </tr>`;}).join(''):'<tr class="empty-row"><td colspan="6">No emails sent.</td></tr>';
+}
+
+function previewEmail(id){const m=getEmailLog().find(x=>x.id===id);if(!m)return;document.getElementById('emailModalBody').textContent=`To: ${m.to}\nSubject: ${m.subject}\n\n${m.body}`;document.getElementById('emailModal').classList.add('open');}
+
+/* ── EXPORT SECTION ── */
+function switchExpTab(tab) {
+  currentExpTab = tab;
+  document.getElementById('expTab1').classList.toggle('active', tab==='admin1');
+  document.getElementById('expTab2').classList.toggle('active', tab==='admin2');
+  document.getElementById('expTabAll').classList.toggle('active', tab==='all');
+  renderExportContent();
+}
+
+function renderExportContent() {
+  const el = document.getElementById('exportContent');
+  const tab = currentExpTab;
+  const owners = tab==='all' ? ['admin1','admin2'] : [tab];
+  let html = '';
+  owners.forEach(owner => {
+    const ws = getOwnerWs(owner);
+    const enr = getOwnerEnrollments(owner);
+    const sel = enr.filter(e=>e.selected);
+    const label = owner==='admin1'?'Admin 1':'Admin 2';
+    html += `<div style="margin-bottom:1.5rem;">
+      <h3 style="font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">${label} <span class="owner-badge owner-badge--${owner==='admin1'?'a1':'a2'}">${label}</span></h3>
+      <div style="display:grid;gap:.75rem;">
+        <div class="table-wrap" style="padding:1.25rem;">
+          <p style="font-weight:600;color:var(--text-w);margin-bottom:.35rem;">All Enrollments (${enr.length})</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem;">
+            <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('${owner}'),'${label}_All.csv')">Download CSV</button>
+            <button class="btn-export" onclick="exportToGoogleSheets(getOwnerEnrollments('${owner}'),'${label}_All')">Google Sheets</button>
+          </div>
+        </div>
+        <div class="table-wrap" style="padding:1.25rem;">
+          <p style="font-weight:600;color:var(--text-w);margin-bottom:.35rem;">Selected Only (${sel.length})</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem;">
+            <button class="btn-export" onclick="exportToCSV(getOwnerEnrollments('${owner}').filter(e=>e.selected),'${label}_Selected.csv')">Download CSV</button>
+            <button class="btn-export" onclick="exportToGoogleSheets(getOwnerEnrollments('${owner}').filter(e=>e.selected),'${label}_Selected')">Google Sheets</button>
+          </div>
+        </div>
+        ${ws.map(w=>{const we=getEnrollments().filter(e=>e.workshopId===w.id);const ws2=we.filter(e=>e.selected);return`<div class="table-wrap" style="padding:1rem;"><p style="font-weight:700;color:var(--text-w);margin-bottom:.3rem;font-size:.875rem;">${w.title} <span class="pill ${owner==='admin1'?'pill-em':'pill-blue'}" style="margin-left:.3rem">${we.length} enrolled</span></p><div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;"><button class="btn-sm btn-sm--em" onclick="exportToCSV(getEnrollments().filter(e=>e.workshopId==='${w.id}'),'${w.title.replace(/[^a-z0-9]/gi,'_')}_All.csv')">All CSV</button><button class="btn-sm btn-sm--amber" onclick="exportToCSV(getEnrollments().filter(e=>e.workshopId==='${w.id}'&&e.selected),'${w.title.replace(/[^a-z0-9]/gi,'_')}_Selected.csv')">Selected CSV (${ws2.length})</button><button class="btn-sm btn-sm--blue" onclick="exportToGoogleSheets(getEnrollments().filter(e=>e.workshopId==='${w.id}'),'${w.title.replace(/[^a-z0-9]/gi,'_')}')">Google Sheets</button></div></div>`;}).join('')}
+      </div>
+    </div>`;
+  });
+  el.innerHTML = html || '<p style="color:var(--text)">No data.</p>';
+}
+
+/* ── WORKSHOP MODAL (edit only for super admin) ── */
+function openEditWs(id) {
+  editingWsId=id;
+  const ws=getWorkshops().find(w=>w.id===id);
+  if(!ws) return;
+  document.getElementById('wsModalTitle').textContent = `Edit: ${ws.title}`;
+  document.getElementById('wsModalBody').innerHTML = buildWorkshopForm(ws);
+  document.getElementById('wsModal').classList.add('open');
+  document.getElementById('wsModalSave').onclick = saveWsEdit;
+}
+function closeWsModal(){document.getElementById('wsModal').classList.remove('open');editingWsId=null;}
+function saveWsEdit(){
+  const data=readWorkshopForm();
+  if(!data.title){showToast('Title is required','error');return;}
+  updateWorkshop(editingWsId, data);
+  showToast('Workshop updated!','success');
+  closeWsModal(); refreshAll();
+}
+function confirmDeleteWs(id){
+  const ws=getWorkshops().find(w=>w.id===id);
+  showConfirm(`Delete "<strong>${ws?.title}</strong>"? All enrollments will also be removed.`,()=>{
+    deleteWorkshop(id); showToast('Workshop deleted.','success'); refreshAll();
+  });
+}
+
+/* ── ENROLLMENT ACTIONS ── */
+function confirmRemoveEnroll(id,owner,tableId,filterSelId,searchId){
+  const enr=getEnrollments().find(e=>e.id===id);
+  const ws=getWorkshops().find(w=>w.id===enr?.workshopId);
+  showConfirm(`Remove <strong>${enr?.name}</strong> from "<strong>${ws?.title}</strong>"?<br/><br/>A rejection email will be sent to <em>${enr?.email}</em>.`,()=>{
+    removeEnrollment(id);
+    showToast(`${enr?.name} removed. Rejection email sent.`,'success');
+    renderOwnerEnrollTable(owner,tableId,filterSelId,searchId);
+    renderDashboard(); renderEmailLog();
+  });
+}
+
+/* ── NAVIGATION HELPERS ── */
+function jumpTo(sec) {
+  document.querySelectorAll('.sidebar-link[data-section]').forEach(l=>l.classList.remove('active'));
+  document.querySelector(`.sidebar-link[data-section="${sec}"]`)?.classList.add('active');
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(`sec-${sec}`)?.classList.add('active');
+  document.getElementById('topbarTitle').textContent = document.querySelector(`.sidebar-link[data-section="${sec}"] .link-label`)?.textContent||'';
+  onSection(sec);
+}
+
+function jumpToEnrollSection(owner, wsId) {
+  const sec = owner==='admin1' ? 'a1-enrollments' : 'a2-enrollments';
+  jumpTo(sec);
+  const filterId = owner==='admin1' ? 'a1EnrollWsFilter' : 'a2EnrollWsFilter';
+  document.getElementById(filterId).value = wsId;
+  if(owner==='admin1') renderOwnerEnrollTable('admin1','a1EnrollTable','a1EnrollWsFilter','a1EnrollSearch');
+  else renderOwnerEnrollTable('admin2','a2EnrollTable','a2EnrollWsFilter','a2EnrollSearch');
+}
+
+/* ── SECTION ACTIVATE ── */
+function onSection(sec) {
+  if(sec==='dashboard')      renderDashboard();
+  if(sec==='a1-workshops')   renderOwnerWsTable('admin1','a1WsTable');
+  if(sec==='a1-enrollments') renderOwnerEnrollTable('admin1','a1EnrollTable','a1EnrollWsFilter','a1EnrollSearch');
+  if(sec==='a2-workshops')   renderOwnerWsTable('admin2','a2WsTable');
+  if(sec==='a2-enrollments') renderOwnerEnrollTable('admin2','a2EnrollTable','a2EnrollWsFilter','a2EnrollSearch');
+  if(sec==='export')         { renderExportContent(); }
+  if(sec==='emaillog')       renderEmailLog();
+}
+
+function refreshAll() {
+  renderDashboard();
+  renderOwnerWsTable('admin1','a1WsTable');
+  renderOwnerWsTable('admin2','a2WsTable');
+  renderEmailLog();
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileSidebar(); initNav(onSection);
+  document.getElementById('wsModal').addEventListener('click',e=>{if(e.target===document.getElementById('wsModal'))closeWsModal();});
+  document.getElementById('logoutBtn').addEventListener('click',()=>{clearSession();window.location.href='super-login.html';});
+
+  // A1 enroll filters
+  document.getElementById('a1EnrollWsFilter').addEventListener('change',()=>renderOwnerEnrollTable('admin1','a1EnrollTable','a1EnrollWsFilter','a1EnrollSearch'));
+  document.getElementById('a1EnrollSearch').addEventListener('input',()=>renderOwnerEnrollTable('admin1','a1EnrollTable','a1EnrollWsFilter','a1EnrollSearch'));
+  // A2 enroll filters
+  document.getElementById('a2EnrollWsFilter').addEventListener('change',()=>renderOwnerEnrollTable('admin2','a2EnrollTable','a2EnrollWsFilter','a2EnrollSearch'));
+  document.getElementById('a2EnrollSearch').addEventListener('input',()=>renderOwnerEnrollTable('admin2','a2EnrollTable','a2EnrollWsFilter','a2EnrollSearch'));
+
+  // Check all a1
+  document.getElementById('a1CheckAll')?.addEventListener('change',function(){document.querySelectorAll('.row-check-admin1').forEach(cb=>{cb.checked=this.checked;toggleSelected(cb.dataset.id);});renderOwnerEnrollTable('admin1','a1EnrollTable','a1EnrollWsFilter','a1EnrollSearch');});
+  // Check all a2
+  document.getElementById('a2CheckAll')?.addEventListener('change',function(){document.querySelectorAll('.row-check-admin2').forEach(cb=>{cb.checked=this.checked;toggleSelected(cb.dataset.id);});renderOwnerEnrollTable('admin2','a2EnrollTable','a2EnrollWsFilter','a2EnrollSearch');});
+
+  const style=document.createElement('style');style.textContent='@media(max-width:900px){.sidebar-toggle-btn{display:block!important}#adminSummaryGrid{grid-template-columns:1fr!important}}';document.head.appendChild(style);
+  renderDashboard();
+});
+</script>
+</body>
+</html>

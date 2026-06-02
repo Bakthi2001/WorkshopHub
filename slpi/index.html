@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLPI Workshop Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">WH</div>
+        <span class="logo-text">SLPI Workshop Hub</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html#workshops" class="nav-link active">Workshops</a>
+        <a href="upcoming.html" class="nav-link">Upcoming</a>
+        <a href="trainers.html" class="nav-link">Trainers</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="admin_select.html" class="nav-link">Admin</a>
+
+        <div class="nav-socials">
+          <a href="https://www.facebook.com/share/1CYiL4Qkh2/" target="_blank" class="social-btn" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/slpi_media" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn-ghost">Log in</a>
+        <a href="signup.html" class="btn-primary">Sign up</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html#workshops" class="mobile-nav-link">Workshops</a>
+      <a href="upcoming.html" class="mobile-nav-link">Upcoming</a>
+      <a href="trainers.html" class="mobile-nav-link">Trainers</a>
+      <a href="resources.html" class="mobile-nav-link">Resources</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <div class="mobile-auth">
+        <a href="login.html" class="btn-ghost w-full">Log in</a>
+        <a href="signup.html" class="btn-primary w-full">Sign up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-text">
+          <h1 class="hero-title">SLPI Workshops</h1>
+          <h1 class="hero-title gradient-text">Hub</h1>
+          <p class="hero-subtitle">Elevating journalism through expert-led workshops and professional certification. Join the next generation of storytellers.</p>
+        </div>
+
+        <!-- WHAT IS SLPI -->
+        <div class="slpi-grid">
+          <div class="slpi-card slpi-card--left">
+            <h2>What is SLPI?</h2>
+            <p>The Sri Lanka Press Institute (SLPI) empowers students and journalists through ethical, professional, and practical journalism training.</p>
+            <p>Learn from industry experts, gain certifications, and build real-world media skills.</p>
+          </div>
+          <div class="slpi-card slpi-card--image">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop" alt="SLPI Workshop" />
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="search-bar">
+          <input class="search-input" type="text" id="searchInput" placeholder="Search workshops..." />
+          <select class="search-select" id="categoryFilter">
+            <option value="All">All Categories</option>
+            <option value="Digital">Digital</option>
+            <option value="Ethics">Ethics</option>
+            <option value="Video">Video</option>
+            <option value="Writing">Writing</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section class="workshops-section" id="workshops">
+      <div class="container">
+        <h2 class="section-title scroll-animate">Available Workshops</h2>
+
+        <!-- FEATURED SCROLLING STRIP -->
+        <div class="strip-section">
+          <h3 class="strip-heading">Featured Workshops</h3>
+          <div class="strip-container">
+            <div class="strip-track" id="stripTrack">
+              <!-- Duplicated for infinite scroll -->
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Digital Journalism Fundamentals</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Media Ethics & Integrity</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Video Storytelling</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Investigative Reporting</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Data Journalism</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">News Photography</p>
+              </div>
+              <!-- Duplicates -->
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Digital Journalism Fundamentals</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Media Ethics & Integrity</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Video Storytelling</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Investigative Reporting</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">Data Journalism</p>
+              </div>
+              <div class="strip-item">
+                <div class="strip-img-wrap"><img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=300&h=160&fit=crop" alt="Workshop" /></div>
+                <p class="strip-name">News Photography</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WORKSHOP GRID -->
+        <div class="workshops-grid" id="workshopsGrid">
+
+          <div class="workshop-card" data-category="Digital">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=300&fit=crop" alt="Digital Journalism" />
+              <span class="badge badge--category">Digital</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Digital Journalism Fundamentals</h3>
+              <p class="card-desc">Master the essentials of digital news reporting, social media storytelling, and online publishing platforms.</p>
+              <div class="card-meta">
+                <span>📅 June 15, 2025</span>
+                <span>🕐 9:00 AM – 5:00 PM</span>
+                <span>📍 SLPI Auditorium, Colombo</span>
+                <span>👤 Sarah Johnson</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('digital-journalism')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('digital-journalism')">Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="workshop-card" data-category="Ethics">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=300&fit=crop" alt="Media Ethics" />
+              <span class="badge badge--category">Ethics</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Media Ethics & Integrity</h3>
+              <p class="card-desc">Explore the ethical frameworks that guide responsible journalism, press freedom, and accountability reporting.</p>
+              <div class="card-meta">
+                <span>📅 July 3, 2025</span>
+                <span>🕐 10:00 AM – 4:00 PM</span>
+                <span>📍 Online (Zoom)</span>
+                <span>👤 Michael Chen</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('media-ethics')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('media-ethics')">Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="workshop-card" data-category="Video">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=300&fit=crop" alt="Video Storytelling" />
+              <span class="badge badge--category">Video</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Video Storytelling</h3>
+              <p class="card-desc">Learn cinematic techniques for broadcast journalism, documentary production, and mobile video reporting.</p>
+              <div class="card-meta">
+                <span>📅 July 20, 2025</span>
+                <span>🕐 9:00 AM – 6:00 PM</span>
+                <span>📍 Media Lab, SLPI</span>
+                <span>👤 Emma Wilson</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('video-storytelling')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('video-storytelling')">Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="workshop-card" data-category="Writing">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=300&fit=crop" alt="Investigative Reporting" />
+              <span class="badge badge--category">Writing</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Investigative Reporting</h3>
+              <p class="card-desc">Deep-dive into source protection, FOIA requests, data analysis, and long-form investigative storytelling.</p>
+              <div class="card-meta">
+                <span>📅 August 5, 2025</span>
+                <span>🕐 9:00 AM – 5:00 PM</span>
+                <span>📍 SLPI Conference Room</span>
+                <span>👤 David Park</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('investigative-reporting')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('investigative-reporting')">Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="workshop-card" data-category="Digital">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop" alt="Data Journalism" />
+              <span class="badge badge--category">Digital</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Data Journalism & Visualization</h3>
+              <p class="card-desc">Transform raw data into compelling stories using modern tools, charts, and interactive visualizations.</p>
+              <div class="card-meta">
+                <span>📅 August 18, 2025</span>
+                <span>🕐 10:00 AM – 5:00 PM</span>
+                <span>📍 Online (Zoom)</span>
+                <span>👤 Sarah Johnson</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('data-journalism')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('data-journalism')">Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="workshop-card" data-category="Writing">
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&h=300&fit=crop" alt="News Photography" />
+              <span class="badge badge--category">Writing</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">News Photography</h3>
+              <p class="card-desc">Develop your visual narrative skills — from breaking news shots to portrait photography for print and digital media.</p>
+              <div class="card-meta">
+                <span>📅 September 2, 2025</span>
+                <span>🕐 8:00 AM – 4:00 PM</span>
+                <span>📍 SLPI Studio, Colombo</span>
+                <span>👤 Emma Wilson</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-enroll" onclick="openModal('news-photography')">Enroll Now</button>
+                <button class="btn-details" onclick="openDetails('news-photography')">Details</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="no-results" id="noResults" style="display:none;">
+          <p>No workshops found matching your criteria.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section" id="feedback-section">
+      <div class="container">
+        <h2 class="section-title scroll-animate">What Participants Say</h2>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card scroll-animate">
+            <div class="testimonial-header">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Doe" class="testimonial-avatar" />
+              <div>
+                <h3 class="testimonial-name">Jane Doe</h3>
+                <p class="testimonial-role">Student Journalist</p>
+              </div>
+            </div>
+            <p class="testimonial-text">The SLPI workshops really enhanced my reporting skills. The instructors were outstanding and the practical exercises were invaluable. Highly recommended!</p>
+          </div>
+          <div class="testimonial-card scroll-animate">
+            <div class="testimonial-header">
+              <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="John Smith" class="testimonial-avatar" />
+              <div>
+                <h3 class="testimonial-name">John Smith</h3>
+                <p class="testimonial-role">Media Professional</p>
+              </div>
+            </div>
+            <p class="testimonial-text">Excellent instructors and very practical exercises. I learned a lot from the digital journalism course. The content was relevant and up-to-date.</p>
+          </div>
+          <div class="testimonial-card scroll-animate">
+            <div class="testimonial-header">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily Davis" class="testimonial-avatar" />
+              <div>
+                <h3 class="testimonial-name">Emily Davis</h3>
+                <p class="testimonial-role">Journalism Enthusiast</p>
+              </div>
+            </div>
+            <p class="testimonial-text">The workshops are engaging and very professional. A great experience overall — I've already signed up for my second course with SLPI!</p>
+          </div>
+        </div>
+
+        <!-- FEEDBACK FORM -->
+        <div class="feedback-form-wrapper">
+          <div class="feedback-form-card">
+            <h3>Share Your Feedback</h3>
+            <div id="feedbackSuccess" class="feedback-success" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Thank you! Your feedback has been shared.</span>
+            </div>
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+              <div class="form-group">
+                <label for="fbName">Your Name</label>
+                <input type="text" id="fbName" placeholder="Enter your name" required />
+              </div>
+              <div class="form-group">
+                <label for="fbRole">Your Role</label>
+                <input type="text" id="fbRole" placeholder="e.g., Student, Professional, etc." required />
+              </div>
+              <div class="form-group">
+                <label for="fbMessage">Your Feedback</label>
+                <textarea id="fbMessage" rows="4" placeholder="Share your experience..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit" id="feedbackSubmitBtn">Submit Feedback</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <div class="logo-icon">WH</div>
+            <span>Workshop Hub</span>
+          </div>
+          <p>Professional journalism workshops and training programs for aspiring and experienced journalists across Sri Lanka.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#workshops">Browse Workshops</a></li>
+            <li><a href="upcoming.html">Upcoming Events</a></li>
+            <li><a href="resources.html">Learning Resources</a></li>
+            <li><a href="about.html">About SLPI</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>Email: <a href="mailto:info@slpi.lk">info@slpi.lk</a></p>
+          <p>Phone: <a href="tel:+94112345678">+94 11 234 5678</a></p>
+          <p>Address: 123 Journalism Lane, Colombo 03, Sri Lanka</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-socials">
+          <a href="https://twitter.com" target="_blank" class="footer-social">𝕏</a>
+          <a href="https://www.facebook.com/share/1CYiL4Qkh2/" target="_blank" class="footer-social">f</a>
+          <a href="https://www.instagram.com/slpi_media" target="_blank" class="footer-social">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="footer-social">▶</a>
+        </div>
+        <p class="footer-copy">&copy; <span id="year"></span> Workshop Hub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ENROLL MODAL -->
+  <div class="modal-overlay" id="enrollModal" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2>Enroll in Workshop</h2>
+      <p class="modal-subtext">Please sign in to register for workshops.</p>
+      <div class="modal-actions">
+        <a href="login.html" class="btn-primary" style="width:100%;text-align:center;">Sign In to Enroll</a>
+        <a href="signup.html" class="btn-ghost" style="width:100%;text-align:center;">Create Account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAILS MODAL -->
+  <div class="modal-overlay" id="detailsModal" onclick="closeDetails()">
+    <div class="modal modal--details" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeDetails()">✕</button>
+      <div id="detailsContent"></div>
+    </div>
+  </div>
+
+  <script src="main.js">const API_BASE = 'http://localhost/slpi_system/backend/api.php';</script>
+</body>
+</html>

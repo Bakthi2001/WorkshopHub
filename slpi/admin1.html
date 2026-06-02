@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Admin 1 Dashboard — SLPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- AUTH GUARD -->
+<script src="admin.js"></script>
+<script>
+  (function(){
+    const s = getSession();
+    if (!s || s.role !== 'admin1') window.location.href = 'admin1-login.html';
+  })();
+</script>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon logo-icon--em">A1</div>
+      <div class="sidebar-logo-text"><h3>Admin 1</h3><p>SLPI Workshop Hub</p></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <button class="sidebar-link active" data-section="dashboard">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span class="link-label">Dashboard</span>
+      </button>
+
+      <div class="nav-section-label">Workshops</div>
+      <button class="sidebar-link" data-section="workshops">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <span class="link-label">My Workshops</span>
+      </button>
+      <button class="sidebar-link" data-section="enrollments">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span class="link-label">Enrollments</span>
+      </button>
+
+      <div class="nav-section-label">Export</div>
+      <button class="sidebar-link" data-section="export">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span class="link-label">Export Data</span>
+      </button>
+      <button class="sidebar-link" data-section="emaillog">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span class="link-label">Email Log</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" style="background:linear-gradient(135deg,var(--em),var(--cyan))">A1</div>
+        <div class="sidebar-user-info"><p>Admin One</p><p>admin1@slpi.lk</p></div>
+      </div>
+      <button class="btn-logout" id="logoutBtn">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <button id="sidebarToggle" style="background:none;border:none;cursor:pointer;color:var(--text-w);display:none;" class="sidebar-toggle-btn">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge badge-em">Admin 1</span>
+        <a href="index.html" class="btn-sm btn-sm--em" style="text-decoration:none;">← Public Site</a>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- DASHBOARD -->
+      <section class="page-section active" id="sec-dashboard">
+        <div class="stats-row" id="dashStats"></div>
+        <div class="section-header">
+          <h2>Recent Workshops</h2>
+          <button class="btn-add" id="dashAddBtn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Workshop
+          </button>
+        </div>
+        <div class="table-wrap"><table class="data-table" id="dashWsTable"><thead><tr><th>Title</th><th>Date</th><th>Enrolled</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- MY WORKSHOPS -->
+      <section class="page-section" id="sec-workshops">
+        <div class="section-header">
+          <h2>My Workshops</h2>
+          <button class="btn-add" id="wsAddBtn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Workshop
+          </button>
+        </div>
+        <div class="table-wrap"><table class="data-table" id="wsTable"><thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Location</th><th>Trainer</th><th>Enrolled</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- ENROLLMENTS -->
+      <section class="page-section" id="sec-enrollments">
+        <div class="section-header">
+          <h2>Enrollments</h2>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+            <select id="enrollWsFilter" class="search-sm" style="min-width:200px;"></select>
+            <input type="text" class="search-sm" id="enrollSearch" placeholder="Search name / email…" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="enrollTable">
+            <thead><tr><th><input type="checkbox" id="checkAll" /></th><th>Name</th><th>Email</th><th>Phone</th><th>NIC</th><th>Workplace</th><th>Workshop</th><th>Date</th><th>Selected</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;">
+          <button class="btn-export" onclick="exportAllEnrolled()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Export All (CSV)</button>
+          <button class="btn-export" onclick="exportSelected()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Export Selected (CSV)</button>
+          <button class="btn-export" onclick="exportToGoogleSheets(getMyEnrollments(),'Admin1_Enrollments')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Google Sheets Export</button>
+        </div>
+      </section>
+
+      <!-- EXPORT PAGE -->
+      <section class="page-section" id="sec-export">
+        <h2 style="margin-bottom:1.5rem;">Export Data</h2>
+        <div style="display:grid;gap:1rem;max-width:42rem;">
+          <div class="table-wrap" style="padding:1.5rem;">
+            <h3 style="margin-bottom:.5rem;font-size:1rem;">All Enrollments</h3>
+            <p style="font-size:.875rem;color:var(--text);margin-bottom:1rem;">Export every enrollment across all your workshops.</p>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+              <button class="btn-export" onclick="exportAllEnrolled()">Download CSV</button>
+              <button class="btn-export" onclick="exportToGoogleSheets(getMyEnrollments(),'Admin1_All')">Google Sheets</button>
+            </div>
+          </div>
+          <div class="table-wrap" style="padding:1.5rem;">
+            <h3 style="margin-bottom:.5rem;font-size:1rem;">Selected / Shortlisted</h3>
+            <p style="font-size:.875rem;color:var(--text);margin-bottom:1rem;">Export only the participants you have marked as Selected.</p>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+              <button class="btn-export" onclick="exportSelected()">Download CSV</button>
+              <button class="btn-export" onclick="exportToGoogleSheets(getMyEnrollments().filter(e=>e.selected),'Admin1_Selected')">Google Sheets</button>
+            </div>
+          </div>
+          <div class="table-wrap" style="padding:1.5rem;" id="perWsExportSection"></div>
+        </div>
+      </section>
+
+      <!-- EMAIL LOG -->
+      <section class="page-section" id="sec-emaillog">
+        <div class="section-header"><h2>Rejection Email Log</h2></div>
+        <div class="table-wrap">
+          <table class="data-table" id="emailLogTable">
+            <thead><tr><th>Sent At</th><th>Recipient</th><th>Email</th><th>Workshop</th><th>Preview</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- WORKSHOP MODAL -->
+<div class="modal-overlay" id="wsModal">
+  <div class="modal-box modal-box--wide">
+    <div class="modal-header">
+      <h3 id="wsModalTitle">Add Workshop</h3>
+      <button class="modal-close" onclick="closeWsModal()">✕</button>
+    </div>
+    <div class="modal-body" id="wsModalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-primary" id="wsModalSave">Save Workshop</button>
+      <button class="btn-ghost"   onclick="closeWsModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL PREVIEW MODAL -->
+<div class="modal-overlay" id="emailModal">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Email Preview</h3><button class="modal-close" onclick="document.getElementById('emailModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" id="emailModalBody" style="white-space:pre-wrap;font-size:.875rem;line-height:1.7;color:var(--text-w);"></div>
+  </div>
+</div>
+
+<script>
+/* ── STATE ── */
+let editingWsId = null;
+
+function getMyWorkshops() { return getWorkshops().filter(w => w.owner === 'admin1'); }
+function getMyEnrollments() {
+  const ids = getMyWorkshops().map(w => w.id);
+  return getEnrollments().filter(e => ids.includes(e.workshopId));
+}
+
+/* ── RENDER DASHBOARD ── */
+function renderDashboard() {
+  const ws = getMyWorkshops();
+  const enr = getMyEnrollments();
+  const selected = enr.filter(e => e.selected).length;
+  const emailsSent = getEmailLog().filter(m => {
+    const ids = ws.map(w => w.id);
+    return ids.some(id => {
+      const w = getWorkshops().find(x=>x.id===id);
+      return w && m.workshop === w.title;
+    });
+  }).length;
+
+  document.getElementById('dashStats').innerHTML = `
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--em">🗂</div><div><div class="stat-tile-val">${ws.length}</div><div class="stat-tile-lbl">My Workshops</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--blue">👥</div><div><div class="stat-tile-val">${enr.length}</div><div class="stat-tile-lbl">Total Enrolled</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--amber">✅</div><div><div class="stat-tile-val">${selected}</div><div class="stat-tile-lbl">Selected</div></div></div>
+    <div class="stat-tile"><div class="stat-tile-icon stat-tile-icon--red">📧</div><div><div class="stat-tile-val">${emailsSent}</div><div class="stat-tile-lbl">Rejection Emails</div></div></div>
+  `;
+  const tbody = document.querySelector('#dashWsTable tbody');
+  tbody.innerHTML = ws.length ? ws.slice(-5).reverse().map(w => `
+    <tr>
+      <td style="font-weight:600;color:var(--text-w)">${w.title}</td>
+      <td>${fmtDate(w.date)}</td>
+      <td><span class="pill pill-blue">${enrollCount(w.id)}</span></td>
+      <td>${wsStatusPill(w)}</td>
+      <td><button class="btn-sm btn-sm--em" onclick="openEnrollModal('${w.id}')">View Enrollments</button></td>
+    </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="5">No workshops yet. Add your first!</td></tr>';
+}
+
+/* ── RENDER WORKSHOP TABLE ── */
+function renderWorkshops() {
+  const ws = getMyWorkshops();
+  const tbody = document.querySelector('#wsTable tbody');
+  tbody.innerHTML = ws.length ? ws.map(w => `
+    <tr>
+      <td style="font-weight:600;color:var(--text-w);max-width:180px">${w.title}</td>
+      <td><span class="pill pill-gray">${w.category}</span></td>
+      <td>${fmtDate(w.date)}</td>
+      <td style="font-size:.8rem">${w.location||'—'}</td>
+      <td style="font-size:.8rem">${w.trainer||'—'}</td>
+      <td><span class="pill pill-blue">${enrollCount(w.id)}</span></td>
+      <td>${wsStatusPill(w)}</td>
+      <td style="white-space:nowrap">
+        <button class="btn-sm btn-sm--em"    onclick="openEnrollModal('${w.id}')">Enrollees</button>
+        <button class="btn-sm btn-sm--amber" onclick="openEditWs('${w.id}')"      style="margin-left:.3rem">Edit</button>
+        <button class="btn-sm btn-sm--red"   onclick="confirmDeleteWs('${w.id}')" style="margin-left:.3rem">Delete</button>
+      </td>
+    </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="8">No workshops. Click "Add Workshop" to create one.</td></tr>';
+}
+
+/* ── RENDER ENROLLMENTS ── */
+function renderEnrollments(filterWsId = '', searchTerm = '') {
+  let enr = getMyEnrollments();
+  const ws = getWorkshops();
+
+  // Populate filter dropdown
+  const sel = document.getElementById('enrollWsFilter');
+  const prev = sel.value;
+  sel.innerHTML = '<option value="">All Workshops</option>' +
+    getMyWorkshops().map(w => `<option value="${w.id}" ${prev===w.id?'selected':''}>${w.title}</option>`).join('');
+  if (prev) sel.value = prev;
+
+  if (filterWsId) enr = enr.filter(e => e.workshopId === filterWsId);
+  if (searchTerm) {
+    const t = searchTerm.toLowerCase();
+    enr = enr.filter(e => e.name.toLowerCase().includes(t) || e.email.toLowerCase().includes(t));
+  }
+
+  const tbody = document.querySelector('#enrollTable tbody');
+  tbody.innerHTML = enr.length ? enr.map(e => {
+    const w = ws.find(x => x.id === e.workshopId);
+    return `<tr>
+      <td><input type="checkbox" class="row-check" data-id="${e.id}" ${e.selected?'checked':''} onchange="toggleSelected('${e.id}');renderEnrollments(document.getElementById('enrollWsFilter').value,document.getElementById('enrollSearch').value)" /></td>
+      <td style="font-weight:600;color:var(--text-w)">${e.name}</td>
+      <td style="font-size:.8rem">${e.email}</td>
+      <td style="font-size:.8rem">${e.phone}</td>
+      <td style="font-size:.8rem">${e.nic}</td>
+      <td style="font-size:.8rem">${e.workplace||'—'}</td>
+      <td style="font-size:.8rem;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${w?w.title:'—'}</td>
+      <td style="font-size:.8rem">${fmtDate(e.enrolledAt)}</td>
+      <td>${e.selected?'<span class="pill pill-em">✓ Yes</span>':'<span class="pill pill-gray">No</span>'}</td>
+      <td><button class="btn-sm btn-sm--red" onclick="confirmRemoveEnroll('${e.id}')">Remove</button></td>
+    </tr>`;
+  }).join('')
+    : '<tr class="empty-row"><td colspan="10">No enrollments found.</td></tr>';
+}
+
+/* ── RENDER EMAIL LOG ── */
+function renderEmailLog() {
+  const log = getEmailLog();
+  const myWsTitles = getMyWorkshops().map(w => w.title);
+  const myLog = log.filter(m => myWsTitles.includes(m.workshop));
+  const tbody = document.querySelector('#emailLogTable tbody');
+  tbody.innerHTML = myLog.length ? myLog.map(m => `
+    <tr>
+      <td style="font-size:.8rem">${new Date(m.sentAt).toLocaleString()}</td>
+      <td style="font-weight:600;color:var(--text-w)">${m.name}</td>
+      <td style="font-size:.8rem">${m.to}</td>
+      <td style="font-size:.8rem">${m.workshop}</td>
+      <td><button class="btn-sm btn-sm--blue" onclick="previewEmail('${m.id}')">Preview</button></td>
+    </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="5">No rejection emails sent yet.</td></tr>';
+}
+
+function previewEmail(id) {
+  const log = getEmailLog();
+  const m = log.find(x => x.id === id);
+  if (!m) return;
+  document.getElementById('emailModalBody').textContent = `To: ${m.to}\nSubject: ${m.subject}\n\n${m.body}`;
+  document.getElementById('emailModal').classList.add('open');
+}
+
+/* ── RENDER EXPORT PAGE ── */
+function renderExportPage() {
+  const section = document.getElementById('perWsExportSection');
+  const ws = getMyWorkshops();
+  section.innerHTML = `<h3 style="margin-bottom:.75rem;font-size:1rem;">Per-Workshop Export</h3>` +
+    (ws.length ? ws.map(w => {
+      const enr = getEnrollments().filter(e => e.workshopId === w.id);
+      const sel = enr.filter(e => e.selected);
+      return `<div style="margin-bottom:1rem;padding:.85rem;background:var(--surface2);border-radius:.75rem;border:1px solid var(--border);">
+        <p style="font-weight:700;color:var(--text-w);margin-bottom:.5rem;">${w.title} <span class="pill pill-blue" style="margin-left:.4rem">${enr.length} enrolled</span></p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="btn-sm btn-sm--em" onclick="exportToCSV(getEnrollments().filter(e=>e.workshopId==='${w.id}'),'${w.title.replace(/[^a-z0-9]/gi,'_')}_All.csv')">All CSV</button>
+          <button class="btn-sm btn-sm--amber" onclick="exportToCSV(getEnrollments().filter(e=>e.workshopId==='${w.id}'&&e.selected),'${w.title.replace(/[^a-z0-9]/gi,'_')}_Selected.csv')">Selected CSV (${sel.length})</button>
+          <button class="btn-sm btn-sm--blue" onclick="exportToGoogleSheets(getEnrollments().filter(e=>e.workshopId==='${w.id}'),'${w.title.replace(/[^a-z0-9]/gi,'_')}')">Google Sheets</button>
+        </div>
+      </div>`;
+    }).join('') : '<p style="color:var(--text);font-size:.875rem;">No workshops yet.</p>');
+}
+
+/* ── WORKSHOP MODAL ── */
+function openAddWs() {
+  editingWsId = null;
+  document.getElementById('wsModalTitle').textContent = 'Add Workshop';
+  document.getElementById('wsModalBody').innerHTML = buildWorkshopForm();
+  document.getElementById('wsModal').classList.add('open');
+  document.getElementById('wsModalSave').onclick = saveWorkshop;
+}
+
+function openEditWs(id) {
+  editingWsId = id;
+  const ws = getWorkshops().find(w => w.id === id);
+  if (!ws) return;
+  document.getElementById('wsModalTitle').textContent = 'Edit Workshop';
+  document.getElementById('wsModalBody').innerHTML = buildWorkshopForm(ws);
+  document.getElementById('wsModal').classList.add('open');
+  document.getElementById('wsModalSave').onclick = saveWorkshop;
+}
+
+function closeWsModal() {
+  document.getElementById('wsModal').classList.remove('open');
+  editingWsId = null;
+}
+
+function saveWorkshop() {
+  const data = readWorkshopForm();
+  if (!data.title) { showToast('Title is required', 'error'); return; }
+  if (!data.date)  { showToast('Date is required',  'error'); return; }
+  if (editingWsId) {
+    updateWorkshop(editingWsId, data);
+    showToast('Workshop updated!', 'success');
+  } else {
+    addWorkshop(data, 'admin1');
+    showToast('Workshop added and published!', 'success');
+  }
+  closeWsModal();
+  refreshAll();
+}
+
+/* ── DELETE WORKSHOP ── */
+function confirmDeleteWs(id) {
+  const ws = getWorkshops().find(w => w.id === id);
+  showConfirm(`Delete "<strong>${ws?.title}</strong>"? All enrollments will also be removed.`, () => {
+    deleteWorkshop(id);
+    showToast('Workshop deleted.', 'success');
+    refreshAll();
+  });
+}
+
+/* ── ENROLLMENT ACTIONS ── */
+function confirmRemoveEnroll(id) {
+  const enr = getEnrollments().find(e => e.id === id);
+  const ws  = getWorkshops().find(w => w.id === enr?.workshopId);
+  showConfirm(`Remove <strong>${enr?.name}</strong> from "<strong>${ws?.title}</strong>"?<br/><br/>A rejection email will be sent to <em>${enr?.email}</em>.`, () => {
+    removeEnrollment(id);
+    showToast(`${enr?.name} removed. Rejection email sent to ${enr?.email}`, 'success');
+    refreshAll();
+  });
+}
+
+function openEnrollModal(wsId) {
+  document.getElementById('enrollWsFilter').value = wsId;
+  document.querySelectorAll('.sidebar-link[data-section]').forEach(l => l.classList.remove('active'));
+  document.querySelector('.sidebar-link[data-section="enrollments"]').classList.add('active');
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-enrollments').classList.add('active');
+  document.getElementById('topbarTitle').textContent = 'Enrollments';
+  renderEnrollments(wsId, '');
+}
+
+/* ── EXPORT HELPERS ── */
+function exportAllEnrolled()  { exportToCSV(getMyEnrollments(), 'Admin1_Enrollments.csv'); }
+function exportSelected()     { exportToCSV(getMyEnrollments().filter(e => e.selected), 'Admin1_Selected.csv'); }
+
+/* ── CHECK ALL ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('checkAll')?.addEventListener('change', function() {
+    document.querySelectorAll('.row-check').forEach(cb => {
+      cb.checked = this.checked;
+      toggleSelected(cb.dataset.id);
+    });
+    renderEnrollments(document.getElementById('enrollWsFilter').value, document.getElementById('enrollSearch').value);
+  });
+});
+
+/* ── REFRESH ── */
+function refreshAll() { renderDashboard(); renderWorkshops(); renderEnrollments(document.getElementById('enrollWsFilter')?.value||'', document.getElementById('enrollSearch')?.value||''); renderEmailLog(); renderExportPage(); }
+
+/* ── SECTION ACTIVATE ── */
+function onSection(sec) {
+  if (sec === 'dashboard')   { renderDashboard(); }
+  if (sec === 'workshops')   { renderWorkshops(); }
+  if (sec === 'enrollments') { renderEnrollments(); }
+  if (sec === 'export')      { renderExportPage(); }
+  if (sec === 'emaillog')    { renderEmailLog(); }
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileSidebar();
+  initNav(onSection);
+  initLogout();
+  renderDashboard();
+
+  // Add workshop buttons
+  document.getElementById('dashAddBtn').onclick = openAddWs;
+  document.getElementById('wsAddBtn').onclick   = openAddWs;
+
+  // Enrollment filters
+  document.getElementById('enrollWsFilter').addEventListener('change', function() { renderEnrollments(this.value, document.getElementById('enrollSearch').value); });
+  document.getElementById('enrollSearch').addEventListener('input',    function() { renderEnrollments(document.getElementById('enrollWsFilter').value, this.value); });
+
+  // Close modal on backdrop
+  document.getElementById('wsModal').addEventListener('click', e => { if (e.target === document.getElementById('wsModal')) closeWsModal(); });
+
+  // Logout redirect
+  document.getElementById('logoutBtn').addEventListener('click', () => { clearSession(); window.location.href = 'admin1-login.html'; });
+
+  // Mobile sidebar style
+  const style = document.createElement('style');
+  style.textContent = '@media(max-width:900px){.sidebar-toggle-btn{display:block!important}}';
+  document.head.appendChild(style);
+});
+</script>
+</body>
+</html>

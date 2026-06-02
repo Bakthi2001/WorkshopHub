@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — SLPI Workshop Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fraunces:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body style="background:#0b0f1a;">
+
+  <div class="auth-page">
+    <!-- BACKGROUND BLOBS -->
+    <div class="auth-blob auth-blob--1"></div>
+    <div class="auth-blob auth-blob--2"></div>
+    <div class="auth-blob auth-blob--3"></div>
+
+    <div class="auth-grid">
+
+      <!-- LEFT INFO PANEL -->
+      <div class="auth-info">
+        <div class="auth-badge">User Portal</div>
+        <h1 class="auth-headline" style="font-family:'Fraunces',serif;">
+          Welcome back,
+          <span>Ready to learn?</span>
+        </h1>
+        <p class="auth-tagline">Access your workshops, track your progress, and join the community. Sign in to continue your journalism journey.</p>
+        <div class="auth-cards">
+          <div class="auth-card">
+            <p class="auth-card-label">Workshops</p>
+            <h4>Browse &amp; Register</h4>
+            <p>Find new opportunities to grow your skills.</p>
+          </div>
+          <div class="auth-card">
+            <p class="auth-card-label">Community</p>
+            <h4>Connect with peers</h4>
+            <p>Join a network of aspiring journalists.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM PANEL -->
+      <div class="auth-form-card">
+        <div class="form-card-header">
+          <div>
+            <p class="form-card-header-label">Secure Access</p>
+            <h2>Sign in</h2>
+          </div>
+          <span class="emoji">📰</span>
+        </div>
+
+        <div id="loginMessage" class="auth-message" style="display:none;"></div>
+
+        <form class="auth-form" id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter password" required />
+          </div>
+          <button type="submit" class="btn-auth" id="loginBtn">Sign In</button>
+        </form>
+
+        <button class="btn-auth-ghost" id="demoLoginBtn" style="margin-top:0.6rem;">Use Demo Credentials</button>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <div class="auth-footer">
+          <p>Don't have an account?</p>
+          <a href="signup.html" class="btn-auth-ghost" style="display:block;margin-top:0.5rem;text-decoration:none;text-align:center;">Create Account</a>
+        </div>
+
+        <div class="auth-demo">
+          <strong>Demo Credentials:</strong><br />
+          Email: demo@example.com &nbsp; Password: Demo1234
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

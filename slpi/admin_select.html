@@ -1,0 +1,134 @@
+<style>
+  .admin-selection{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.admin-select-card{
+  text-decoration:none;
+  background:#111827;
+  border:1px solid rgba(255,255,255,0.08);
+  padding:1.2rem;
+  border-radius:16px;
+  transition:0.3s ease;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+
+.admin-select-card:hover{
+  transform:translateY(-4px);
+  border-color:#00d2ff;
+  box-shadow:0 10px 25px rgba(0,210,255,0.15);
+}
+
+.admin-icon{
+  width:55px;
+  height:55px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#00d2ff,#3a7bd5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:700;
+  font-size:1rem;
+  flex-shrink:0;
+}
+
+.admin-select-card h3{
+  color:#fff;
+  margin:0;
+  font-size:1rem;
+}
+
+.admin-select-card p{
+  margin:.25rem 0 0;
+  color:#9ca3af;
+  font-size:.82rem;
+}
+
+.back-link{
+  display:block;
+  text-align:center;
+  margin-top:1.5rem;
+  font-size:.8rem;
+  color:var(--text);
+  text-decoration:none;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Admin 1 Login — SLPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<div class="admin-login-page">
+  <div class="admin-login-page">
+  <div class="login-card">
+
+    <div class="login-card-logo">
+      <div class="logo-icon logo-icon--em">SL</div>
+      <div>
+        <h2>Admin Portal</h2>
+        <p>SLPI Workshop Hub</p>
+      </div>
+    </div>
+
+    <div class="admin-selection">
+
+      <a href="admin1-login.html" class="admin-select-card">
+        <div class="admin-icon">A1</div>
+        <h3>Admin 1</h3>
+        <p>Workshop Manager Access</p>
+      </a>
+
+      <a href="admin2-login.html" class="admin-select-card">
+        <div class="admin-icon">A2</div>
+        <h3>Admin 2</h3>
+        <p>Limited Access Panel</p>
+      </a>
+
+      <a href="superadmin-login.html" class="admin-select-card">
+        <div class="admin-icon">SA</div>
+        <h3>Super Admin</h3>
+        <p>Full System Control</p>
+      </a>
+
+    </div>
+
+    <a href="index.html" class="back-link">← Back to site</a>
+
+  </div>
+</div>
+</div>
+<script src="admin.js"></script>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const u = document.getElementById('username').value.trim();
+    const p = document.getElementById('password').value.trim();
+    const msg = document.getElementById('loginMsg');
+    const btn = document.getElementById('loginBtn');
+    const admin = ADMINS.admin1;
+    if (u === admin.user && p === admin.pass) {
+      setSession(admin);
+      msg.className = 'login-msg login-msg--success'; msg.style.display='block';
+      msg.textContent = '✓ Login successful, redirecting…';
+      btn.disabled = true;
+      setTimeout(() => window.location.href = 'admin1.html', 900);
+    } else {
+      msg.className = 'login-msg login-msg--error'; msg.style.display='block';
+      msg.textContent = 'Invalid credentials. Please try again.';
+    }
+  });
+</script>
+</body>
+</html>

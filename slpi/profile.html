@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>My Profile — SLPI Workshop Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <style>
+    body { background: #020617; }
+    .profile-page { min-height: 100vh; }
+
+    /* ── TOPNAV ── */
+    .profile-nav {
+      position: sticky; top: 0; z-index: 80;
+      background: rgba(2,6,23,.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: .75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .profile-nav-logo {
+      display: flex; align-items: center; gap: .6rem;
+      font-family:'Syne',sans-serif; font-weight:700; color:#f1f5f9; font-size:.95rem;
+    }
+    .profile-nav-logo .logo-icon { width:2rem; height:2rem; border-radius:.4rem; background:linear-gradient(135deg,#10b981,#06b6d4); display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#fff; }
+    .profile-nav-right { display:flex; align-items:center; gap:.75rem; }
+    .nav-user-chip {
+      display:flex; align-items:center; gap:.5rem;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:2rem; padding:.35rem .85rem .35rem .45rem;
+      font-size:.8rem; color:#e2e8f0;
+    }
+    .nav-avatar-sm {
+      width:1.6rem; height:1.6rem; border-radius:50%;
+      background:linear-gradient(135deg,#10b981,#06b6d4);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Syne',sans-serif;font-size:.55rem;font-weight:800;color:#fff;
+    }
+    .btn-nav-ghost {
+      background:none; border:1px solid rgba(255,255,255,.12); color:#94a3b8;
+      font-family:'Syne',sans-serif; font-size:.78rem; font-weight:600;
+      padding:.4rem .9rem; border-radius:2rem; cursor:pointer;
+      transition: background .2s, color .2s;
+    }
+    .btn-nav-ghost:hover { background:rgba(255,255,255,.07); color:#e2e8f0; }
+
+    /* ── HEADER BAND ── */
+    .profile-hero {
+      background: linear-gradient(135deg,rgba(16,185,129,.1) 0%,rgba(6,182,212,.06) 60%,transparent 100%);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 3rem 1.5rem 0;
+    }
+    .profile-hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .profile-avatar-lg {
+      width: 6rem; height: 6rem; border-radius: 50%;
+      background: linear-gradient(135deg,#10b981,#06b6d4);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;
+      border: 3px solid rgba(16,185,129,.35); flex-shrink:0;
+      margin-bottom: -2rem; position:relative; z-index:2;
+    }
+    .profile-hero-info { flex:1; padding-bottom:1.5rem; }
+    .profile-hero-info h1 { font-size:clamp(1.5rem,4vw,2.2rem); color:#f1f5f9; margin-bottom:.3rem; }
+    .profile-hero-info p  { font-size:.9rem; color:#64748b; }
+    .profile-hero-actions { display:flex; gap:.6rem; padding-bottom:1.5rem; }
+
+    /* ── TABS ── */
+    .profile-tabs-bar {
+      max-width:1100px; margin:2rem auto 0; padding:0 1.5rem;
+      display:flex; gap:.25rem; border-bottom:1px solid rgba(255,255,255,.07);
+      overflow-x:auto;
+    }
+    .p-tab {
+      padding:.75rem 1.1rem; font-family:'Syne',sans-serif; font-size:.82rem; font-weight:700;
+      color:#64748b; border:none; background:none; cursor:pointer; white-space:nowrap;
+      border-bottom: 2px solid transparent; transition:color .2s,border-color .2s;
+    }
+    .p-tab:hover   { color:#e2e8f0; }
+    .p-tab.active  { color:#10b981; border-bottom-color:#10b981; }
+
+    /* ── CONTENT ── */
+    .profile-body { max-width:1100px; margin:0 auto; padding:2rem 1.5rem 5rem; }
+
+    /* ── STAT CARDS ── */
+    .p-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2.5rem; }
+    .p-stat  { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:1rem;padding:1.25rem;text-align:center;transition:transform .3s,border-color .3s; }
+    .p-stat:hover { transform:translateY(-4px); border-color:rgba(16,185,129,.2); }
+    .p-stat-icon { font-size:1.5rem; margin-bottom:.35rem; }
+    .p-stat-val  { font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:900;color:#e2e8f0;line-height:1; }
+    .p-stat-lbl  { font-size:.72rem;color:#64748b;margin-top:.15rem; }
+
+    /* ── WS CARDS GRID ── */
+    .ws-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; }
+    .ws-p-card {
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:1.2rem;overflow:hidden;
+      display:flex;flex-direction:column;transition:transform .35s,border-color .3s,box-shadow .35s;
+    }
+    .ws-p-card:hover { transform:translateY(-6px);border-color:rgba(16,185,129,.22);box-shadow:0 16px 40px rgba(16,185,129,.1); }
+    .ws-p-img { height:8.5rem;overflow:hidden;position:relative; }
+    .ws-p-img img { width:100%;height:100%;object-fit:cover;transition:transform .5s; }
+    .ws-p-card:hover .ws-p-img img { transform:scale(1.05); }
+    .ws-p-img-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(2,6,23,.6),transparent); }
+    .ws-p-body { padding:1rem;flex:1;display:flex;flex-direction:column; }
+    .ws-p-title { font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:.35rem; }
+    .ws-p-meta  { font-size:.75rem;color:#64748b;line-height:1.6;flex:1;margin-bottom:.75rem; }
+    .ws-p-badges { display:flex;gap:.4rem;flex-wrap:wrap; }
+
+    /* ── NOTIF LIST ── */
+    .notif-list { display:flex; flex-direction:column; gap:.75rem; }
+    .notif-row {
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      border-radius:1rem;padding:1.1rem 1.25rem;
+      display:flex;align-items:flex-start;gap:1rem;transition:background .2s;cursor:pointer;
+    }
+    .notif-row.unread { border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.04); }
+    .notif-row:hover  { background:rgba(255,255,255,.07); }
+    .notif-icon-wrap  { width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+    .ni-enrolled   { background:rgba(59,130,246,.15); }
+    .ni-selected   { background:rgba(16,185,129,.15); }
+    .ni-rejected   { background:rgba(239,68,68,.12); }
+    .ni-deselected { background:rgba(245,158,11,.1); }
+    .notif-subject { font-size:.875rem;font-weight:600;color:#e2e8f0;margin-bottom:.2rem; }
+    .notif-when    { font-size:.73rem;color:#64748b; }
+    .unread-dot    { width:.5rem;height:.5rem;border-radius:50%;background:#10b981;flex-shrink:0;margin-top:.4rem; }
+
+    /* ── EDIT FORM ── */
+    .edit-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:1.5rem;padding:2rem; max-width:44rem; }
+
+    /* ── EMAIL MODAL ── */
+    .email-modal-box {
+      background:#0d1627;border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;
+      width:100%;max-width:36rem;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align:center;padding:3rem 1rem;color:#64748b; }
+    .empty-state .e-icon { font-size:3rem;margin-bottom:.75rem; }
+    .empty-state h3 { font-size:1.1rem;color:#94a3b8;margin-bottom:.4rem; }
+    .empty-state p  { font-size:.875rem; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px) {
+      .p-stats        { grid-template-columns:repeat(2,1fr); }
+      .ws-cards-grid  { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:480px) {
+      .ws-cards-grid  { grid-template-columns:1fr; }
+      .p-stats        { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<script src="admin.js"></script>
+<script>
+  // Auth guard — redirect to login if not logged in
+  (function(){
+    const s = getUserSession();
+    if (!s) { window.location.href = 'login.html'; }
+  })();
+</script>
+
+<div class="profile-page">
+
+  <!-- TOP NAV -->
+  <nav class="profile-nav">
+    <a href="index.html" class="profile-nav-logo" style="text-decoration:none;">
+      <div class="logo-icon">WH</div>
+      <span>SLPI Workshop Hub</span>
+    </a>
+    <div class="profile-nav-right">
+      <div class="nav-user-chip" id="navUserChip">
+        <div class="nav-avatar-sm" id="navAvatarSm"></div>
+        <span id="navUserName">Loading…</span>
+      </div>
+      <a href="index.html" class="btn-nav-ghost">Browse Workshops</a>
+      <button class="btn-nav-ghost" id="logoutBtn">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-avatar-lg" id="heroAvatar"></div>
+      <div class="profile-hero-info">
+        <h1 id="heroName">Loading…</h1>
+        <p id="heroMeta"></p>
+      </div>
+      <div class="profile-hero-actions">
+        <button class="btn-sm btn-sm--em" onclick="switchTab('edit')">Edit Profile</button>
+      </div>
+    </div>
+    <div class="profile-tabs-bar">
+      <button class="p-tab active" data-tab="overview"  onclick="switchTab('overview')">Overview</button>
+      <button class="p-tab"        data-tab="workshops" onclick="switchTab('workshops')">My Workshops</button>
+      <button class="p-tab"        data-tab="notifs"    onclick="switchTab('notifs')">
+        Notifications <span class="pill pill-em" id="unreadBadge" style="margin-left:.3rem;display:none;"></span>
+      </button>
+      <button class="p-tab"        data-tab="edit"      onclick="switchTab('edit')">Edit Profile</button>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="profile-body">
+
+    <!-- OVERVIEW TAB -->
+    <div class="tab-panel active" id="tab-overview">
+      <div class="p-stats" id="overviewStats"></div>
+
+      <h2 style="font-family:'Syne',sans-serif;font-size:1.2rem;color:#e2e8f0;margin-bottom:1.25rem;">Recent Activity</h2>
+      <div class="ws-cards-grid" id="recentCards"></div>
+    </div>
+
+    <!-- MY WORKSHOPS TAB -->
+    <div class="tab-panel" id="tab-workshops">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem;">
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.2rem;color:#e2e8f0;">All Workshop Enrollments</h2>
+        <div style="display:flex;gap:.5rem;">
+          <button class="pill pill-gray" id="filterAll"      onclick="filterWorkshops('all')"      style="cursor:pointer;padding:.4rem .9rem;">All</button>
+          <button class="pill pill-blue" id="filterEnrolled" onclick="filterWorkshops('enrolled')" style="cursor:pointer;padding:.4rem .9rem;">Enrolled</button>
+          <button class="pill pill-em"   id="filterSelected" onclick="filterWorkshops('selected')" style="cursor:pointer;padding:.4rem .9rem;">Selected</button>
+          <button class="pill pill-red"  id="filterRejected" onclick="filterWorkshops('rejected')" style="cursor:pointer;padding:.4rem .9rem;">Rejected</button>
+        </div>
+      </div>
+      <div class="ws-cards-grid" id="allWsCards"></div>
+    </div>
+
+    <!-- NOTIFICATIONS TAB -->
+    <div class="tab-panel" id="tab-notifs">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem;">
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.2rem;color:#e2e8f0;">Notifications &amp; Emails</h2>
+        <button class="btn-sm btn-sm--em" onclick="markAllRead()">Mark All Read</button>
+      </div>
+      <div class="notif-list" id="notifList"></div>
+    </div>
+
+    <!-- EDIT TAB -->
+    <div class="tab-panel" id="tab-edit">
+      <h2 style="font-family:'Syne',sans-serif;font-size:1.2rem;color:#e2e8f0;margin-bottom:1.5rem;">Edit Profile</h2>
+      <div class="edit-card">
+        <div id="editMsg" style="display:none;margin-bottom:1rem;"></div>
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name</label><input type="text" id="editName" /></div>
+          <div class="form-group"><label>Email</label><input type="email" id="editEmail" /></div>
+          <div class="form-group"><label>Phone</label><input type="text" id="editPhone" /></div>
+          <div class="form-group"><label>NIC / ID</label><input type="text" id="editNic" /></div>
+          <div class="form-group full"><label>Workplace / Organisation</label><input type="text" id="editWorkplace" /></div>
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.07);">
+          <h3 style="font-size:.95rem;margin-bottom:1rem;">Change Password</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Current Password</label><input type="password" id="editCurrentPass" placeholder="••••••••" /></div>
+            <div class="form-group"><label>New Password</label><input type="password" id="editNewPass" placeholder="Min 6 chars" /></div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:.75rem;">
+          <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+          <button class="btn-ghost"   onclick="switchTab('overview')">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EMAIL PREVIEW MODAL -->
+<div class="modal-overlay" id="emailPreviewModal" style="display:none;">
+  <div class="email-modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header"><h3 id="emailPreviewSubject">Email</h3><button class="modal-close" onclick="closeEmailPreview()">✕</button></div>
+    <div class="modal-body">
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:.75rem;padding:1.1rem;margin-bottom:1rem;">
+        <p style="font-size:.78rem;color:#64748b;">To: <span id="emailPreviewTo" style="color:#94a3b8;"></span></p>
+        <p style="font-size:.78rem;color:#64748b;margin-top:.2rem;">Sent: <span id="emailPreviewDate" style="color:#94a3b8;"></span></p>
+      </div>
+      <pre id="emailPreviewBody" style="white-space:pre-wrap;font-size:.875rem;line-height:1.75;color:#e2e8f0;font-family:'DM Sans',sans-serif;"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── CURRENT USER ── */
+let currentUser = null;
+let currentFilter = 'all';
+
+function loadUser() {
+  currentUser = getUserSession();
+  if (!currentUser) return;
+  // Always pull fresh from storage
+  const fresh = getUserByEmail(currentUser.email);
+  if (fresh) { currentUser = fresh; setUserSession(fresh); }
+  renderAll();
+}
+
+/* ── RENDER ALL ── */
+function renderAll() {
+  if (!currentUser) return;
+  const initials = currentUser.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  // Nav
+  document.getElementById('navAvatarSm').textContent = initials;
+  document.getElementById('navUserName').textContent  = currentUser.name.split(' ')[0];
+  // Hero
+  document.getElementById('heroAvatar').textContent = initials;
+  document.getElementById('heroName').textContent   = currentUser.name;
+  document.getElementById('heroMeta').textContent   = `${currentUser.email} · ${currentUser.workplace||'—'} · NIC: ${currentUser.nic||'—'}`;
+  // Tabs content
+  renderStats();
+  renderRecentCards();
+  renderAllWsCards(currentFilter);
+  renderNotifs();
+  populateEditForm();
+}
+
+/* ── STATS ── */
+function renderStats() {
+  const stats = getUserStats(currentUser.id);
+  document.getElementById('overviewStats').innerHTML = [
+    ['📚','Enrolled',     stats.totalEnrolled,  'rgba(59,130,246,.12)' ],
+    ['✅','Selected',     stats.totalSelected,  'rgba(16,185,129,.12)' ],
+    ['🎓','Attended',     stats.totalAttended,  'rgba(245,158,11,.1)'  ],
+    ['❌','Absent/TBD',   stats.totalAbsent,    'rgba(239,68,68,.1)'   ],
+  ].map(([icon,label,val,bg])=>`
+    <div class="p-stat" style="background:${bg};">
+      <div class="p-stat-icon">${icon}</div>
+      <div class="p-stat-val">${val}</div>
+      <div class="p-stat-lbl">${label}</div>
+    </div>`).join('');
+}
+
+/* ── WS CARD BUILDER ── */
+function buildWsCard(e, ws) {
+  if (!ws) return '';
+  const att    = getAttendanceRecord(ws.id, currentUser.id);
+  const isSelected = e.selected;
+  const isRejected = e.status === 'rejected';
+
+  let enrollBadge = '<span class="pill pill-blue" style="font-size:.6rem;">Enrolled</span>';
+  if (isSelected) enrollBadge = '<span class="pill pill-em" style="font-size:.6rem;">✓ Selected</span>';
+  if (isRejected) enrollBadge = '<span class="pill pill-red" style="font-size:.6rem;">Removed</span>';
+
+  let attBadge = '';
+  if (att) attBadge = att.attended
+    ? '<span class="pill pill-em"    style="font-size:.6rem;">🎓 Attended</span>'
+    : '<span class="pill pill-red"   style="font-size:.6rem;">❌ Absent</span>';
+
+  return `<div class="ws-p-card">
+    <div class="ws-p-img">
+      <img src="${ws.image||'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=300&fit=crop'}" alt="${ws.title}" loading="lazy" />
+      <div class="ws-p-img-overlay"></div>
+    </div>
+    <div class="ws-p-body">
+      <div class="ws-p-title">${ws.title}</div>
+      <div class="ws-p-meta">
+        📅 ${fmtDate(ws.date)}<br/>
+        📍 ${ws.location||'—'}<br/>
+        👤 ${ws.trainer||'—'}
+      </div>
+      <div class="ws-p-badges">
+        ${enrollBadge}
+        ${attBadge}
+        <span class="pill pill-gray" style="font-size:.6rem;">${ws.category}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── RECENT CARDS (overview) ── */
+function renderRecentCards() {
+  const enrollments = getEnrollments().filter(e=>e.userId===currentUser.id);
+  const ws = getWorkshops();
+  const recent = enrollments.slice(-6).reverse();
+  const html = recent.map(e=>buildWsCard(e, ws.find(w=>w.id===e.workshopId))).join('');
+  document.getElementById('recentCards').innerHTML = html || `<div class="empty-state" style="grid-column:1/-1"><div class="e-icon">📋</div><h3>No workshops yet</h3><p><a href="index.html" style="color:#10b981;">Browse workshops</a> to get started.</p></div>`;
+}
+
+/* ── ALL WS CARDS ── */
+function renderAllWsCards(filter='all') {
+  currentFilter = filter;
+  // Update filter pill styles
+  ['all','enrolled','selected','rejected'].forEach(f=>{
+    const el = document.getElementById('filter'+f.charAt(0).toUpperCase()+f.slice(1));
+    if(el) el.style.opacity = f===filter ? '1' : '.5';
+  });
+  let enrollments = getEnrollments().filter(e=>e.userId===currentUser.id);
+  if (filter==='enrolled')  enrollments = enrollments.filter(e=>!e.selected && e.status!=='rejected');
+  if (filter==='selected')  enrollments = enrollments.filter(e=>e.selected);
+  if (filter==='rejected')  enrollments = enrollments.filter(e=>e.status==='rejected');
+  const ws = getWorkshops();
+  const html = enrollments.map(e=>buildWsCard(e, ws.find(w=>w.id===e.workshopId))).filter(Boolean).join('');
+  document.getElementById('allWsCards').innerHTML = html || `<div class="empty-state" style="grid-column:1/-1"><div class="e-icon">${filter==='selected'?'✅':filter==='rejected'?'❌':'📚'}</div><h3>No ${filter} workshops</h3><p>Nothing to show here yet.</p></div>`;
+}
+
+/* ── NOTIFICATIONS ── */
+function renderNotifs() {
+  const notifs = getUserNotifs().filter(n=>n.userId===currentUser.id);
+  const unread = notifs.filter(n=>!n.read).length;
+  const badge = document.getElementById('unreadBadge');
+  if (unread > 0) { badge.textContent = unread; badge.style.display=''; }
+  else badge.style.display='none';
+
+  const icons = { enrolled:'📬', selected:'🎉', rejected:'⚠️', deselected:'📋' };
+  const classes = { enrolled:'ni-enrolled', selected:'ni-selected', rejected:'ni-rejected', deselected:'ni-deselected' };
+
+  const html = notifs.map(n=>`
+    <div class="notif-row ${n.read?'':'unread'}" onclick="openNotifEmail('${n.id}')">
+      <div class="notif-icon-wrap ${classes[n.type]||'ni-enrolled'}">${icons[n.type]||'📧'}</div>
+      <div style="flex:1;">
+        <div class="notif-subject">${n.subject}</div>
+        <div class="notif-when">${new Date(n.sentAt).toLocaleString()} &nbsp;·&nbsp; ${n.workshopTitle}</div>
+      </div>
+      ${!n.read?'<div class="unread-dot"></div>':''}
+    </div>`).join('');
+
+  document.getElementById('notifList').innerHTML = html || `<div class="empty-state"><div class="e-icon">📭</div><h3>No notifications yet</h3><p>You'll receive emails here when you enroll, get selected, or are removed from a workshop.</p></div>`;
+}
+
+function markAllRead() {
+  const notifs = getUserNotifs().map(n=>n.userId===currentUser.id?{...n,read:true}:n);
+  saveUserNotifs(notifs);
+  renderNotifs();
+  showToast('All notifications marked as read.', 'success');
+}
+
+function openNotifEmail(id) {
+  const notifs = getUserNotifs();
+  const idx = notifs.findIndex(n=>n.id===id);
+  if(idx===-1) return;
+  // Mark as read
+  notifs[idx].read = true;
+  saveUserNotifs(notifs);
+  renderNotifs();
+  // Show modal
+  const n = notifs[idx];
+  document.getElementById('emailPreviewSubject').textContent = n.subject;
+  document.getElementById('emailPreviewTo').textContent      = currentUser.email;
+  document.getElementById('emailPreviewDate').textContent    = new Date(n.sentAt).toLocaleString();
+  document.getElementById('emailPreviewBody').textContent    = n.body;
+  const modal = document.getElementById('emailPreviewModal');
+  modal.style.display = 'flex';
+  modal.style.position = 'fixed';
+  modal.style.inset = '0';
+  modal.style.background = 'rgba(2,6,23,.88)';
+  modal.style.backdropFilter = 'blur(8px)';
+  modal.style.zIndex = '500';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.padding = '1.5rem';
+  modal.onclick = e=>{ if(e.target===modal) closeEmailPreview(); };
+}
+
+function closeEmailPreview() {
+  document.getElementById('emailPreviewModal').style.display = 'none';
+}
+
+/* ── EDIT FORM ── */
+function populateEditForm() {
+  document.getElementById('editName').value      = currentUser.name||'';
+  document.getElementById('editEmail').value     = currentUser.email||'';
+  document.getElementById('editPhone').value     = currentUser.phone||'';
+  document.getElementById('editNic').value       = currentUser.nic||'';
+  document.getElementById('editWorkplace').value = currentUser.workplace||'';
+}
+
+function saveProfile() {
+  const name       = document.getElementById('editName').value.trim();
+  const email      = document.getElementById('editEmail').value.trim();
+  const phone      = document.getElementById('editPhone').value.trim();
+  const nic        = document.getElementById('editNic').value.trim();
+  const workplace  = document.getElementById('editWorkplace').value.trim();
+  const curPass    = document.getElementById('editCurrentPass').value;
+  const newPass    = document.getElementById('editNewPass').value;
+  const msgEl      = document.getElementById('editMsg');
+
+  if (!name||!email) { showEditMsg('Name and email are required.','error'); return; }
+
+  const users = getUsers();
+  const idx   = users.findIndex(u=>u.id===currentUser.id);
+  if (idx===-1) return;
+
+  // Password change
+  if (curPass||newPass) {
+    if (users[idx].password !== curPass) { showEditMsg('Current password is incorrect.','error'); return; }
+    if (newPass.length < 6)              { showEditMsg('New password must be at least 6 characters.','error'); return; }
+    users[idx].password = newPass;
+  }
+
+  users[idx] = { ...users[idx], name, email: email.toLowerCase(), phone, nic, workplace };
+  saveUsers(users);
+  setUserSession(users[idx]);
+  currentUser = users[idx];
+
+  document.getElementById('editCurrentPass').value = '';
+  document.getElementById('editNewPass').value     = '';
+
+  showEditMsg('Profile updated successfully!','success');
+  renderAll();
+}
+
+function showEditMsg(msg, type) {
+  const el = document.getElementById('editMsg');
+  el.textContent  = msg;
+  el.className    = `auth-message auth-message--${type}`;
+  el.style.display = 'block';
+  setTimeout(()=>{ el.style.display='none'; }, 4000);
+}
+
+/* ── TABS ── */
+function switchTab(tab) {
+  document.querySelectorAll('.p-tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active', p.id==='tab-'+tab));
+  if(tab==='notifs') renderNotifs();
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', ()=>{
+  loadUser();
+  document.getElementById('logoutBtn').addEventListener('click', ()=>{
+    clearUserSession();
+    window.location.href = 'login.html';
+  });
+});
+</script>
+</body>
+</html>

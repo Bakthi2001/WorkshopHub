@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Admin 2 Login — SLPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<div class="admin-login-page">
+  <div class="login-card">
+    <div class="login-card-logo">
+      <div class="logo-icon logo-icon--blue">A2</div>
+      <div><h2>Admin 2 Portal</h2><p>SLPI Workshop Hub</p></div>
+    </div>
+    <div id="loginMsg" class="login-msg"></div>
+    <form class="login-form" id="loginForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="admin2" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;background:var(--blue);" id="loginBtn">Sign In</button>
+    </form>
+    <p style="margin-top:1.25rem;text-align:center;font-size:.78rem;color:var(--text);">
+      Demo: <code style="color:var(--blue)">admin2</code> / <code style="color:var(--blue)">Admin2@2025</code>
+    </p>
+    <a href="index.html" style="display:block;text-align:center;margin-top:1rem;font-size:.8rem;color:var(--text);">← Back to site</a>
+  </div>
+</div>
+<script src="admin.js"></script>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const u = document.getElementById('username').value.trim();
+    const p = document.getElementById('password').value.trim();
+    const msg = document.getElementById('loginMsg');
+    const btn = document.getElementById('loginBtn');
+    const admin = ADMINS.admin2;
+    if (u === admin.user && p === admin.pass) {
+      setSession(admin);
+      msg.className = 'login-msg login-msg--success'; msg.style.display='block';
+      msg.textContent = '✓ Login successful, redirecting…';
+      btn.disabled = true;
+      setTimeout(() => window.location.href = 'admin2.html', 900);
+    } else {
+      msg.className = 'login-msg login-msg--error'; msg.style.display='block';
+      msg.textContent = 'Invalid credentials. Please try again.';
+    }
+  });
+</script>
+</body>
+</html>
